@@ -1,42 +1,56 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
+/* D-Identity Design System - Indian Blockchain Voter Verification */
+/* Glassmorphism with Tricolor Theme */
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* Indian Tricolor Theme */
+    --saffron: 27 100% 60%; /* #FF9933 */
+    --white: 0 0% 100%; /* #FFFFFF */
+    --indian-green: 115 89% 30%; /* #138808 */
+    --lotus-gold: 45 100% 68%; /* #FFD700 */
+    --chakra-blue: 217 91% 59%; /* #4285f4 */
+    
+    /* Glass System */
+    --glass-white: 0 0% 100% / 0.1;
+    --glass-dark: 0 0% 0% / 0.1;
+    --glass-border: 0 0% 100% / 0.2;
+    
+    /* Base System */
+    --background: 220 27% 98%;
+    --foreground: 220 9% 9%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card: 0 0% 100% / 0.7;
+    --card-foreground: 220 9% 9%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 100% / 0.95;
+    --popover-foreground: 220 9% 9%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    --primary: 115 89% 30%; /* Indian Green */
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 27 100% 95%; /* Light Saffron */
+    --secondary-foreground: 27 100% 25%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted: 220 14% 96%;
+    --muted-foreground: 220 8% 46%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --accent: 27 100% 60%; /* Saffron */
+    --accent-foreground: 0 0% 100%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --border: 220 13% 91%;
+    --input: 0 0% 100% / 0.1;
+    --ring: 27 100% 60%;
 
-    --radius: 0.5rem;
+    --radius: 0.75rem;
 
     --sidebar-background: 0 0% 98%;
 
@@ -100,6 +114,89 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-gradient-to-br from-background via-secondary/20 to-accent/10 text-foreground font-inter min-h-screen;
+    font-family: 'Inter', 'Poppins', sans-serif;
+  }
+}
+
+@layer components {
+  /* Glassmorphism Effects */
+  .glass {
+    @apply backdrop-blur-xl bg-white/10 border border-white/20 shadow-xl;
+  }
+  
+  .glass-card {
+    @apply glass rounded-2xl p-6 hover:bg-white/15 transition-all duration-300;
+  }
+  
+  .glass-nav {
+    @apply glass border-b border-white/10 backdrop-blur-2xl bg-white/5;
+  }
+  
+  /* Indian Flag Gradient */
+  .tricolor-gradient {
+    background: linear-gradient(to right, 
+      hsl(var(--saffron)) 0%, 
+      hsl(var(--saffron)) 33.33%, 
+      hsl(var(--white)) 33.33%, 
+      hsl(var(--white)) 66.66%, 
+      hsl(var(--indian-green)) 66.66%, 
+      hsl(var(--indian-green)) 100%);
+  }
+  
+  /* Animations */
+  .float {
+    animation: float 6s ease-in-out infinite;
+  }
+  
+  .glow {
+    box-shadow: 0 0 20px hsl(var(--accent) / 0.3);
+  }
+  
+  .pulse-saffron {
+    animation: pulse-saffron 2s infinite;
+  }
+  
+  /* Button Variants */
+  .btn-saffron {
+    @apply bg-gradient-to-r from-accent to-accent/80 hover:from-accent/90 hover:to-accent/70 text-accent-foreground;
+    @apply glass border-accent/30 shadow-lg hover:shadow-accent/25 transition-all duration-300;
+  }
+  
+  .btn-green {
+    @apply bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70 text-primary-foreground;
+    @apply glass border-primary/30 shadow-lg hover:shadow-primary/25 transition-all duration-300;
+  }
+  
+  .btn-glass {
+    @apply glass hover:bg-white/20 border-white/30 text-foreground hover:text-accent transition-all duration-300;
+  }
+}
+
+@layer utilities {
+  .font-inter {
+    font-family: 'Inter', sans-serif;
+  }
+  
+  .font-poppins {
+    font-family: 'Poppins', sans-serif;
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes pulse-saffron {
+  0%, 100% {
+    box-shadow: 0 0 0 0 hsl(var(--accent) / 0.7);
+  }
+  50% {
+    box-shadow: 0 0 0 10px hsl(var(--accent) / 0);
   }
 }
