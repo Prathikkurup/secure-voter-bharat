@@ -18,7 +18,18 @@ export default {
 			}
 		},
 		extend: {
+			fontFamily: {
+				inter: ['Inter', 'sans-serif'],
+				poppins: ['Poppins', 'sans-serif'],
+			},
 			colors: {
+				// Indian Tricolor
+				saffron: 'hsl(var(--saffron))',
+				'indian-green': 'hsl(var(--indian-green))',
+				'lotus-gold': 'hsl(var(--lotus-gold))',
+				'chakra-blue': 'hsl(var(--chakra-blue))',
+				
+				// Base System
 				border: 'hsl(var(--border))',
 				input: 'hsl(var(--input))',
 				ring: 'hsl(var(--ring))',
