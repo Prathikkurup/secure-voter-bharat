@@ -113,9 +113,33 @@
     @apply border-border;
   }
 
-  body {
-    @apply bg-gradient-to-br from-background via-secondary/20 to-accent/10 text-foreground font-inter min-h-screen;
+    body {
+    /* Custom tricolor gradient background */
+    background: #FCB045;
+    background: linear-gradient(142deg, rgba(252, 176, 69, 1) 0%, rgba(255, 252, 252, 0) 50%, rgba(106, 252, 69, 1) 100%);
+    color: hsl(var(--foreground));
     font-family: 'Inter', 'Poppins', sans-serif;
+    min-height: 100vh;
+    position: relative;
+  }
+
+
+   body::before {
+    content: "";
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 400px;
+    height: 400px;
+    background-image: url('/emblem.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    opacity: 0.3; /* more transparent */
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    z-index: 1;
+    mix-blend-mode: multiply;
   }
 }
 
@@ -143,7 +167,33 @@
       hsl(var(--indian-green)) 66.66%, 
       hsl(var(--indian-green)) 100%);
   }
-  
+
+  /* Emblem Watermark */
+  /* Indian Emblem Watermark */
+  /* Indian Emblem Watermark (center faded) */
+.emblem-watermark::before {
+  content: "";
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 400px; /* adjust size */
+  height: 400px;
+  background-image: url('/emblem.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  opacity: 0.08; /* slightly more visible */
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 1; /* stays above gradient, below content */
+}
+
+.emblem-watermark > * {
+  position: relative;
+  z-index: 5; /* keeps UI above emblem */
+}
+
+
   /* Animations */
   .float {
     animation: float 6s ease-in-out infinite;
