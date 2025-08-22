@@ -6,6 +6,21 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Shield, CreditCard, CheckCircle, AlertCircle, Loader2 } from 'lucide-react';
 import Navigation from '@/components/Navigation';
 
+import { BrowserProvider, Contract, keccak256, toUtf8Bytes } from "ethers";
+
+import IdentityABI from "../../DeSoc/artifacts/contracts/IdentityContract.sol/Identity.json";
+
+
+
+import { registerIdentity } from "@/utils/contract";
+
+
+declare global {
+  interface Window {
+    ethereum?: any;
+  }
+}
+
 const Register = () => {
   const [formData, setFormData] = useState({
     aadhaar: '',
@@ -15,21 +30,62 @@ const Register = () => {
   const [isVerifying, setIsVerifying] = useState(false);
   const [verificationStatus, setVerificationStatus] = useState<'idle' | 'success' | 'error'>('idle');
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsVerifying(true);
-    
-    // Simulate verification process
-    setTimeout(() => {
-      setIsVerifying(false);
-      setVerificationStatus('success');
-    }, 3000);
-  };
+  
 
   const handleInputChange = (field: string, value: string) => {
     setFormData(prev => ({ ...prev, [field]: value }));
     setVerificationStatus('idle');
   };
+
+
+
+const CONTRACT_ADDRESS = "0x1EE2D65c0B63C65aB40E11eEbB31CcBA29D17Cfa";
+
+async function handleSubmit(e: React.FormEvent) {
+  e.preventDefault();
+
+  try {
+    // ✅ Step 1: Check MetaMask
+    if (!window.ethereum) {
+      console.error("MetaMask not installed");
+      return;
+    }
+    const accounts = await window.ethereum.request({ method: "eth_requestAccounts" });
+    console.log("Connected account:", accounts[0]);
+
+    // ✅ Step 2: Setup provider, signer, contract
+    const provider = new BrowserProvider(window.ethereum);
+    const signer = await provider.getSigner();
+    const address = await signer.getAddress();
+    console.log("Signer address:", address);
+
+    const contract = new Contract(CONTRACT_ADDRESS, IdentityABI.abi, signer);
+    console.log("Contract instance:", contract);
+
+    // ✅ Step 3: Prepare values
+    const name = "User Name"; // Replace with form input
+    const aadhaarHash = keccak256(toUtf8Bytes("123456789012"));
+    const panHash = keccak256(toUtf8Bytes("ABCDE1234F"));
+    const drivingHash = keccak256(toUtf8Bytes("DL1234567890"));
+
+    console.log("Sending data to smart contract:", { name, aadhaarHash, panHash, drivingHash });
+
+    // ✅ Step 4: Send transaction
+    const tx = await contract.registerIdentity(name, aadhaarHash, panHash, drivingHash);
+    console.log("Transaction sent:", tx);
+
+    await tx.wait();
+    console.log("Transaction mined successfully:", tx.hash);
+    console.log(`View on BscScan: https://testnet.bscscan.com/tx/${tx.hash}`);
+
+    // ✅ Step 5: Read back from contract
+    const storedIdentity = await contract.identities(address);
+    console.log("Stored Identity on Blockchain:", storedIdentity);
+
+  } catch (error) {
+    console.error("Error during contract interaction:", error);
+  }
+}
 
   return (
     <div className="min-h-screen">

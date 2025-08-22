@@ -123,7 +123,7 @@ const Dashboard = () => {
                       Your Aadhaar and Voter ID have been successfully verified and linked to your blockchain identity.
                     </p>
                     <div className="flex items-center space-x-4 text-sm text-muted-foreground">
-                      <span>Verification ID: d-identity-2024-001</span>
+                      <span>Verification ID: VeriSafe-2024-001</span>
                       <span>•</span>
                       <span>Blockchain Hash: 0x7a8b9c...</span>
                     </div>

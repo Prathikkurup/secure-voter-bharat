@@ -38,7 +38,7 @@ const Navigation = () => {
               <Shield className="h-8 w-8 text-accent group-hover:text-primary transition-colors duration-300" />
             </div>
             <div className="font-poppins">
-              <span className="text-xl font-bold text-foreground">d-identity</span>
+              <span className="text-xl font-bold text-foreground">VeriSafe</span>
               <div className="text-xs text-muted-foreground">Blockchain Govt Id Verification</div>
             </div>
           </Link>

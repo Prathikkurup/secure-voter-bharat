@@ -1,0 +1,114 @@
+{
+  "_format": "hh-sol-cache-2",
+  "files": {
+    "C:\\Users\\prath\\OneDrive\\Documents\\GitHub\\secure-voter-bharat\\DeSoc\\contracts\\IdentityContract.sol": {
+      "lastModificationDate": 1755869844350,
+      "contentHash": "68f8466fb464222b11ecede9cc510eed",
+      "sourceName": "contracts/IdentityContract.sol",
+      "solcConfig": {
+        "version": "0.8.28",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "evmVersion": "paris",
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "Identity"
+      ]
+    },
+    "C:\\Users\\prath\\OneDrive\\Documents\\GitHub\\secure-voter-bharat\\DeSoc\\contracts\\Lock.sol": {
+      "lastModificationDate": 1755869844359,
+      "contentHash": "59a4d12a2c49a6cd80492a71f4b210ed",
+      "sourceName": "contracts/Lock.sol",
+      "solcConfig": {
+        "version": "0.8.28",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "evmVersion": "paris",
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.20"
+      ],
+      "artifacts": [
+        "Lock"
+      ]
+    },
+    "C:\\Users\\prath\\OneDrive\\Documents\\GitHub\\secure-voter-bharat\\DeSoc\\contracts\\ReputationContract.sol": {
+      "lastModificationDate": 1755869844368,
+      "contentHash": "30db77bae53942a144d8becba11bf720",
+      "sourceName": "contracts/ReputationContract.sol",
+      "solcConfig": {
+        "version": "0.8.28",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "evmVersion": "paris",
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.28"
+      ],
+      "artifacts": [
+        "IIdentityContract",
+        "ReputationContract"
+      ]
+    }
+  }
+}

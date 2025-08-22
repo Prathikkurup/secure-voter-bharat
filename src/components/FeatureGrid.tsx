@@ -33,7 +33,7 @@ const FeatureGrid = () => {
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-12">
           <h2 className="text-3xl sm:text-4xl font-bold font-poppins text-foreground mb-4">
-            Why Choose d-identity?
+            Why Choose VeriSafe?
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             Experience the future of democratic participation with our cutting-edge blockchain technology

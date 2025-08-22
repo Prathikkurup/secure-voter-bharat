@@ -44,7 +44,7 @@ const About = () => {
 
   const faqs = [
     {
-      question: 'How does d-identity protect my privacy?',
+      question: 'How does VeriSafe protect my privacy?',
       answer: 'We use zero-knowledge proofs to verify your identity without storing or revealing your personal information. Your Aadhaar and Voter ID details are never stored in plain text and are encrypted using military-grade security.'
     },
     {
@@ -65,7 +65,7 @@ const About = () => {
     },
     {
       question: 'Is this system government approved?',
-      answer: 'Yes, d-identity is developed in compliance with government regulations and works with official databases including UIDAI and Election Commission systems.'
+      answer: 'Yes, VeriSafe is developed in compliance with government regulations and works with official databases including UIDAI and Election Commission systems.'
     }
   ];
 
@@ -83,7 +83,7 @@ const About = () => {
             </div>
             
             <h1 className="text-4xl sm:text-5xl font-bold font-poppins text-foreground mb-6">
-              About <span className="text-accent">d-identity</span>
+              About <span className="text-accent">VeriSafe</span>
             </h1>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
               India's first blockchain-based identity verification system, empowering citizens with secure, 
@@ -109,7 +109,7 @@ const About = () => {
           {/* Features Grid */}
           <div className="mb-16">
             <h2 className="text-3xl font-bold font-poppins text-foreground text-center mb-12">
-              Why Choose d-identity?
+              Why Choose VeriSafe?
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               {features.map((feature, index) => (
@@ -194,7 +194,7 @@ const About = () => {
                   </h2>
                   <p className="text-muted-foreground leading-relaxed mb-6">
                     India's democracy is the world's largest, with over 900 million eligible voters. 
-                    d-identity ensures that every citizen can participate securely and confidently 
+                    VeriSafe ensures that every citizen can participate securely and confidently 
                     in the democratic process, while maintaining the integrity of our electoral system.
                   </p>
                   <div className="space-y-3">
