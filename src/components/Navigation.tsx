@@ -22,7 +22,6 @@ const Navigation = () => {
     { href: '/register', label: 'Register', icon: UserCheck },
     { href: '/dashboard', label: 'Dashboard', icon: BarChart3 },
     { href: '/audit', label: 'Audit Trail', icon: FileText },
-    { href: '/admin', label: 'Admin Panel', icon: Settings },
     { href: '/about', label: 'About', icon: HelpCircle },
   ];
 
