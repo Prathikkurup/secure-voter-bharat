@@ -25,10 +25,10 @@ const Hero = () => {
           <div className="space-y-4">
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold font-poppins text-foreground leading-tight">
               Secure Your
-              <span className="bg-gradient-to-r from-accent via-primary to-accent bg-clip-text text-transparent"> Democratic Voice</span>
+              <span className="bg-gradient-to-r from-accent via-primary to-accent bg-clip-text text-transparent"> Social Identity</span>
             </h1>
             <p className="text-xl text-muted-foreground leading-relaxed max-w-2xl">
-              Verify your voter registration with India's first blockchain-based identity system. 
+              Verify your Govt Cards with India's first blockchain-based identity system. 
               Experience transparent, fraud-proof elections powered by cutting-edge technology.
             </p>
           </div>
@@ -109,16 +109,21 @@ const Hero = () => {
             </div>
 
             {/* Indian Flag Element */}
-            <div className="flex justify-center">
-              <div className="relative">
-                <div className="w-24 h-16 tricolor-gradient rounded-lg shadow-lg glow"></div>
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="w-6 h-6 border-2 border-chakra-blue rounded-full bg-white/80 flex items-center justify-center">
-                    <div className="w-3 h-3 rounded-full bg-chakra-blue"></div>
+           <div className="flex justify-center pt-8">
+                <div className="relative">
+                  <div
+                    className="w-32 h-24 rounded-lg shadow-lg glow"
+                    style={{
+                      background: "linear-gradient(to bottom, #FF9933 33%, #FFFFFF 33% 66%, #128807 66% 100%)",
+                    }}
+                  ></div>
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <div className="w-6 h-6 border-2 border-chakra-blue rounded-full bg-white/80 flex items-center justify-center">
+                      <div className="w-3 h-3 rounded-full bg-chakra-blue"></div>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
           </div>
         </div>
       </div>

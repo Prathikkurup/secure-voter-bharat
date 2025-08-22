@@ -86,7 +86,7 @@ const About = () => {
               About <span className="text-accent">d-identity</span>
             </h1>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-              India's first blockchain-based voter verification system, empowering citizens with secure, 
+              India's first blockchain-based identity verification system, empowering citizens with secure, 
               transparent, and fraud-proof digital identity management for democratic participation.
             </p>
           </div>
@@ -99,7 +99,7 @@ const About = () => {
               </div>
               <h2 className="text-2xl font-bold font-poppins text-foreground mb-4">Our Mission</h2>
               <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-                To revolutionize democratic participation in India by providing a secure, transparent, and 
+                To revolutionize Identity Verification in India by providing a secure, transparent, and 
                 accessible digital identity system that ensures every citizen's right to vote is protected 
                 while maintaining the highest standards of privacy and security.
               </p>

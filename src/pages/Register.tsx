@@ -45,7 +45,7 @@ const Register = () => {
             </div>
             
             <h1 className="text-4xl sm:text-5xl font-bold font-poppins text-foreground mb-4">
-              Verify Your <span className="text-accent">Voter Registration</span>
+              Verify Your <span className="text-accent">Registration</span>
             </h1>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
               Link your Aadhaar and Voter ID for secure blockchain-based verification

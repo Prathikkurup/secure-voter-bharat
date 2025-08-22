@@ -36,12 +36,11 @@ const Navigation = () => {
           <Link to="/" className="flex items-center space-x-3 group">
             <div className="flex items-center space-x-2">
               {/* Indian Flag Symbol */}
-              <div className="w-8 h-6 tricolor-gradient rounded-sm border border-white/30 group-hover:scale-105 transition-transform duration-300"></div>
               <Shield className="h-8 w-8 text-accent group-hover:text-primary transition-colors duration-300" />
             </div>
             <div className="font-poppins">
               <span className="text-xl font-bold text-foreground">d-identity</span>
-              <div className="text-xs text-muted-foreground">Blockchain Voter Verification</div>
+              <div className="text-xs text-muted-foreground">Blockchain Govt Id Verification</div>
             </div>
           </Link>
 
