@@ -1,4 +1,4 @@
-import Navigation from '@/components/Navigation';
+ import Navigation from '@/components/Navigation';
 import Hero from '@/components/Hero';
 import FeatureGrid from '@/components/FeatureGrid';
 
@@ -7,9 +7,9 @@ const Index = () => {
     <div className="min-h-screen">
       <Navigation />
       <Hero />
-      <FeatureGrid />
+  {/* <FeatureGrid /> removed to hide Quick Demo section */}
     </div>
   );
 };
 
-export default Index;
+export default Index; 

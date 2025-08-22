@@ -5,9 +5,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import Register from "./pages/Register";
-import Dashboard from "./pages/Dashboard";
-import Audit from "./pages/Audit";
-import Admin from "./pages/Admin";
+ import Dashboard from "./pages/Dashboard";import Audit from "./pages/Audit";
 import About from "./pages/About";
 import NotFound from "./pages/NotFound";
 
@@ -18,22 +16,17 @@ const App = () => (
     <TooltipProvider>
       <Toaster />
       <Sonner />
-
-      {/* 🔹 Watermark wrapper */}
-      <div className="relative emblem-watermark min-h-screen">
-        <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<Index />} />
-            <Route path="/register" element={<Register />} />
-            <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/audit" element={<Audit />} />
-            <Route path="/admin" element={<Admin />} />
-            <Route path="/about" element={<About />} />
-            {/* Catch-all route */}
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </BrowserRouter>
-      </div>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Index />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/audit" element={<Audit />} />        \
+          <Route path="/about" element={<About />} />
+          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>
 );
