@@ -157,7 +157,7 @@ const Dashboard = () => {
                     <Button className="btn-saffron">
                       Download Certificate
                     </Button>
-                    <Button variant="outline" className="btn-glass">
+                  <Button variant="outline" className="btn-glass">
                       View Audit Trail
                     </Button>
                   </div>

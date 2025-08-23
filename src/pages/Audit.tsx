@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { Search, Filter, Download, Eye, Shield, Clock } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -6,9 +6,13 @@ import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
 import Navigation from '@/components/Navigation';
 
+import jsPDF from "jspdf";
+import html2canvas from "html2canvas";
+
 const Audit = () => {
   const [searchTerm, setSearchTerm] = useState('');
-  
+  const recordsRef = useRef<HTMLDivElement>(null); // 👈 ref for Transaction Records
+
   const auditRecords = [
     {
       id: 'TXN001',
@@ -89,6 +93,23 @@ const Audit = () => {
     record.id.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
+  // 👇 Export to PDF function
+  const handleExportPDF = async () => {
+    const element = recordsRef.current;
+    if (!element) return;
+
+    const canvas = await html2canvas(element, { scale: 2 });
+    const imgData = canvas.toDataURL("image/png");
+
+    const pdf = new jsPDF("p", "mm", "a4");
+    const pageWidth = pdf.internal.pageSize.getWidth();
+    const imgProps = pdf.getImageProperties(imgData);
+    const pdfHeight = (imgProps.height * pageWidth) / imgProps.width;
+
+    pdf.addImage(imgData, "PNG", 0, 0, pageWidth, pdfHeight);
+    pdf.save("transaction-records.pdf");
+  };
+
   return (
     <div className="min-h-screen">
       <Navigation />
@@ -152,7 +173,8 @@ const Audit = () => {
                     <Filter className="mr-2 h-4 w-4" />
                     Filter
                   </Button>
-                  <Button className="btn-saffron">
+                  {/* 👇 Export Button now triggers PDF */}
+                  <Button className="btn-saffron" onClick={handleExportPDF}>
                     <Download className="mr-2 h-4 w-4" />
                     Export
                   </Button>
@@ -162,7 +184,7 @@ const Audit = () => {
           </Card>
 
           {/* Audit Records */}
-          <Card className="glass-card border-white/20">
+          <Card className="glass-card border-white/20" ref={recordsRef}>
             <CardHeader>
               <CardTitle className="text-2xl font-poppins text-foreground">
                 Transaction Records
