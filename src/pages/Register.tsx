@@ -21,6 +21,11 @@ const Register = () => {
     voterId: '',
     mobile: ''
   });
+  const [errors, setErrors] = useState({
+    aadhaar: '',
+    voterId: '',
+    mobile: ''
+  });
   const [isVerifying, setIsVerifying] = useState(false);
   const [verificationStatus, setVerificationStatus] = useState<'idle' | 'success'>('idle');
   const [drivingHash, setDrivingHash] = useState<string | null>(null);
@@ -28,12 +33,40 @@ const Register = () => {
   const handleInputChange = (field: string, value: string) => {
     setFormData(prev => ({ ...prev, [field]: value }));
     setVerificationStatus('idle');
+    setErrors(prev => ({ ...prev, [field]: '' })); // clear errors on change
   };
 
   const CONTRACT_ADDRESS = "0x1EE2D65c0B63C65aB40E11eEbB31CcBA29D17Cfa";
 
+  // validation function
+  const validateForm = () => {
+    let valid = true;
+    let newErrors = { aadhaar: '', voterId: '', mobile: '' };
+
+    if (!/^\d{12}$/.test(formData.aadhaar)) {
+      newErrors.aadhaar = "Aadhaar must be exactly 12 digits";
+      valid = false;
+    }
+
+    if (!/^[A-Za-z0-9]{10}$/.test(formData.voterId)) {
+      newErrors.voterId = "Voter ID must be 10 alphanumeric characters";
+      valid = false;
+    }
+
+    if (!/^\d{10}$/.test(formData.mobile)) {
+      newErrors.mobile = "Mobile number must be exactly 10 digits";
+      valid = false;
+    }
+
+    setErrors(newErrors);
+    return valid;
+  };
+
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
+
+    if (!validateForm()) return;
+
     setIsVerifying(true);
 
     // compute driving hash upfront
@@ -60,7 +93,7 @@ const Register = () => {
       console.log("Contract instance:", contract);
 
       const name = "User Name"; // Replace with form input
-      const aadhaarHash = keccak256(toUtf8Bytes("123456789012"));
+      const aadhaarHash = keccak256(toUtf8Bytes(formData.aadhaar));
       const panHash = keccak256(toUtf8Bytes("ABCDE1234F"));
 
       console.log("Sending data to smart contract:", { name, aadhaarHash, panHash, drivingHashValue });
@@ -131,15 +164,15 @@ const Register = () => {
                           value={formData.aadhaar}
                           onChange={(e) => handleInputChange('aadhaar', e.target.value)}
                           className="glass border-white/30 focus:border-accent/50 text-foreground placeholder:text-muted-foreground"
-                          maxLength={14}
+                          maxLength={12}
                         />
                         <div className="absolute right-3 top-1/2 transform -translate-y-1/2">
                           <Shield className="h-4 w-4 text-muted-foreground" />
                         </div>
                       </div>
-                      <p className="text-xs text-muted-foreground">
-                        Your Aadhaar number is encrypted and never stored in plain text
-                      </p>
+                      {errors.aadhaar && (
+                        <p className="text-xs text-red-500">{errors.aadhaar}</p>
+                      )}
                     </div>
 
                     {/* Voter ID Input */}
@@ -161,6 +194,9 @@ const Register = () => {
                           <CreditCard className="h-4 w-4 text-muted-foreground" />
                         </div>
                       </div>
+                      {errors.voterId && (
+                        <p className="text-xs text-red-500">{errors.voterId}</p>
+                      )}
                     </div>
 
                     {/* Mobile Input */}
@@ -171,11 +207,15 @@ const Register = () => {
                       <Input
                         id="mobile"
                         type="tel"
-                        placeholder="+91 XXXXX XXXXX"
+                        placeholder="Enter 10-digit mobile"
                         value={formData.mobile}
                         onChange={(e) => handleInputChange('mobile', e.target.value)}
                         className="glass border-white/30 focus:border-accent/50 text-foreground placeholder:text-muted-foreground"
+                        maxLength={10}
                       />
+                      {errors.mobile && (
+                        <p className="text-xs text-red-500">{errors.mobile}</p>
+                      )}
                       <p className="text-xs text-muted-foreground">
                         For OTP verification and status updates
                       </p>
